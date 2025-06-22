@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  password-generator:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: password-generator-prod
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    restart: always
+    healthcheck:
+      test: ["CMD", "node", "healthcheck.js"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - app-network
+    volumes:
+      - ./logs:/app/logs:ro
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /var/tmp
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.password-generator.rule=Host(`your-domain.com`)"
+      - "traefik.http.routers.password-generator.tls=true"
+      - "traefik.http.routers.password-generator.tls.certresolver=letsencrypt"
+
+networks:
+  app-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+volumes:
+  logs:
+    driver: local 

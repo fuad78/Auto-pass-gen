@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  password-generator:
+    build: .
+    container_name: password-generator-app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "healthcheck.js"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - app-network
+    volumes:
+      - ./logs:/app/logs
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.password-generator.rule=Host(`password-generator.local`)"
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  logs: 

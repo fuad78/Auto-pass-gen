@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator - Developed by Fuad Hasan</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header with developer credit -->
+        <header class="header">
+            <h1 class="title">
+                <i class="fas fa-shield-alt"></i>
+                Password Generator
+            </h1>
+            <p class="developer">Developed by <span class="highlight">Fuad Hasan</span></p>
+        </header>
+
+        <!-- Main password generator card -->
+        <div class="password-card">
+            <!-- Password display area -->
+            <div class="password-display">
+                <input type="text" id="passwordOutput" readonly placeholder="Your generated password will appear here">
+                <button id="copyBtn" class="copy-btn" title="Copy to clipboard">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+
+            <!-- Password strength indicator -->
+            <div class="strength-meter">
+                <div class="strength-bar">
+                    <div id="strengthFill" class="strength-fill"></div>
+                </div>
+                <span id="strengthText" class="strength-text">Strength: Weak</span>
+            </div>
+
+            <!-- Controls -->
+            <div class="controls">
+                <!-- Password length slider -->
+                <div class="control-group">
+                    <label for="passwordLength" class="control-label">
+                        <i class="fas fa-ruler-horizontal"></i>
+                        Password Length: <span id="lengthValue">12</span>
+                    </label>
+                    <input type="range" id="passwordLength" min="4" max="50" value="12" class="slider">
+                </div>
+
+                <!-- Character type options -->
+                <div class="options-grid">
+                    <div class="option-item">
+                        <input type="checkbox" id="uppercase" checked>
+                        <label for="uppercase" class="option-label">
+                            <i class="fas fa-font"></i>
+                            Uppercase Letters
+                        </label>
+                    </div>
+                    <div class="option-item">
+                        <input type="checkbox" id="lowercase" checked>
+                        <label for="lowercase" class="option-label">
+                            <i class="fas fa-font"></i>
+                            Lowercase Letters
+                        </label>
+                    </div>
+                    <div class="option-item">
+                        <input type="checkbox" id="numbers" checked>
+                        <label for="numbers" class="option-label">
+                            <i class="fas fa-hashtag"></i>
+                            Numbers
+                        </label>
+                    </div>
+                    <div class="option-item">
+                        <input type="checkbox" id="symbols" checked>
+                        <label for="symbols" class="option-label">
+                            <i class="fas fa-asterisk"></i>
+                            Symbols
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Generate button -->
+                <button id="generateBtn" class="generate-btn">
+                    <i class="fas fa-magic"></i>
+                    Generate Password
+                </button>
+            </div>
+        </div>
+
+        <!-- Features section -->
+        <div class="features">
+            <div class="feature-item">
+                <i class="fas fa-bolt"></i>
+                <h3>Lightning Fast</h3>
+                <p>Generate secure passwords instantly</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-lock"></i>
+                <h3>Highly Secure</h3>
+                <p>Advanced algorithms for maximum security</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-customize"></i>
+                <h3>Customizable</h3>
+                <p>Choose your preferred character types</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success notification -->
+    <div id="notification" class="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notificationText">Password copied to clipboard!</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
